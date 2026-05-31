@@ -27,12 +27,12 @@ export const Navbar = () => {
                         alt="Logo"
                     />
 
-                    <div className='flex flex-col leading-tight ml-28'>
-                        <span className='text-2xl font-bold tracking-wide text-primary'>
+                    <div className='flex flex-col leading-tight ml-24'>
+                        <span className='text-lg font-bold tracking-wide text-primary'>
                             HIXHAME CENTER
                         </span>
 
-                        <span className='text-sm text-gray-600 tracking-[4px]'>
+                        <span className='text-xs text-gray-600 tracking-[4px]'>
                             PRISHTINË
                         </span>
                     </div>
@@ -41,10 +41,10 @@ export const Navbar = () => {
 
                 {/* Desktop Menu */}
                 <ul className='hidden lg:flex items-center gap-12 xl:gap-16'>
-                    <li><a className='menu-item'>Faqja Kryesore</a></li>
-                    <li><a className='menu-item'>Shërbimet</a></li>
-                    <li><a className='menu-item'>Rreth Nesh</a></li>
-                    <li><a className='menu-item'>Kontakt</a></li>
+                    <li><a href="#" className='menu-item'>Faqja Kryesore</a></li>
+                    <li><a href="#ourservice" className='menu-item'>Shërbimet</a></li>
+                    <li><a href="#ourwork" className='menu-item'>Rreth Nesh</a></li>
+                    <li><a href="#contact" className='menu-item'>Kontakt</a></li>
                 </ul>
 
             <div className='flex items-center gap-3'>

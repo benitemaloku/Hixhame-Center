@@ -3,7 +3,7 @@ import { RiPhoneFill, RiMapPin2Fill, RiMailFill } from "react-icons/ri";
 
 const Contact = () => {
   return (
-    <section className="max-w-[1200px] mx-auto py-20 px-4">
+    <section id="contact" className="max-w-[1200px] mx-auto py-20 px-4">
       
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-5xl font-bold text-darkBlue mb-5">

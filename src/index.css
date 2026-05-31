@@ -11,7 +11,7 @@
   }
 }
 
-.textgradient {
+.text-gradient {
   background: linear-gradient(90deg, #285091 11.46%, #4eBbf1 91.65%);
   background-clip: text;
   -webkit-background-clip: text;

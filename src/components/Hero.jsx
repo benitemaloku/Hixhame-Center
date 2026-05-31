@@ -6,12 +6,14 @@ import HeroIMG3 from "../assets/33.png"
 
 const Hero = () => {
   return (
-   <section className='max-w-screen-xl mx-auto px-6 py-20
-            flex flex-col-reverse items-center gap-10
-            md:flex-row md:justify-between'>
+   <section className='max-w-screen-xl mx-auto px-4 py-14
+            flex flex-col-reverse items-center gap-12
+            md:flex-row'>
             
         <div className='flex-1 text-center md:text-left'>
-            <h2 className='text-3xl font-bold text-gradient mb-3 md:text-4xl md:leading-[3rem] lg:text-5xl lg:leading-[4rem]'>
+            <h2 className='text-3xl font-bold text-gradient 
+                mb-3 md:text-4xl md:leading-[3rem] lg:text-5xl 
+                lg:leading-[4rem]'>
             Qetësi, Shëndet dhe Kujdes Natyral
             </h2>
 

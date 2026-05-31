@@ -9,7 +9,7 @@ import GalleryImg6 from "../assets/gallery-img6.jpg"
 
 const OurWork = () => {
   return (
-    <section className="max-w-[1200px] pt-8 mx-auto">
+    <section id="ourwork" className="max-w-[1200px] pt-8 mx-auto">
         <h2 className="text-3xl md:text-5xl font-bold text-darkBlue mb-5 text-center">
         Rreth Nesh
         </h2>

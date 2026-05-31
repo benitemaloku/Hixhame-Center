@@ -4,8 +4,8 @@ import { STATS_DATA } from "../utils/data";
 
 const Stats = () => {
   return (
-    <section className="bg-secondary py-20">
-      <div className="max-w-screen-xl mx-auto px-6">
+    <section className="bg-secondary py-6">
+      <div className="max-w-screen-2xl mx-auto px-6">
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           {STATS_DATA.map((item) => (

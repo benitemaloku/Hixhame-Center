@@ -4,10 +4,10 @@ import ServiceInfoCard from "./Cards/ServiceInfoCard";
 
 const OurServices = () => {
   return (
-    <section className="max-w-[1200px] mx-auto py-20 px-4">
+    <section id="ourservice" className="max-w-[1200px] mx-auto py-20 px-4">
 
       <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-5xl font-bold text-darkBlue mb-5">
+        <h2 className="text-xl md:text-5xl font-bold text-darkBlue mb-5">
           Shërbimet Tona
         </h2>
 

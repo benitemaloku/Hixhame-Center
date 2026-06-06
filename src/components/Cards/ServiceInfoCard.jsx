@@ -7,38 +7,59 @@ const ServiceInfoCard = ({
   reverse,
 }) => {
   return (
-    <div className="bg-secondary rounded-3xl overflow-hidden shadow-lg shadow-slate-200/40">
-
+    <div
+      className="
+        group
+        bg-white
+        rounded-[32px]
+        overflow-hidden
+        border border-slate-100
+        shadow-sm
+        hover:shadow-xl
+        transition-all duration-500
+      "
+    >
       <div
         className={`flex flex-col ${
           reverse ? "md:flex-row-reverse" : "md:flex-row"
         }`}
       >
-
         {/* IMAGE */}
-        <div className="flex-1">
+        <div className="md:w-[42%] overflow-hidden">
           <img
             src={imgUrl}
             alt={title}
-            className="w-full h-56 md:h-full object-cover"
+            className="
+              w-full
+              h-[280px]
+              md:h-full
+              object-cover
+              group-hover:scale-105
+              transition-transform
+              duration-700
+            "
           />
         </div>
 
         {/* CONTENT */}
         <div className="flex-1 flex items-center">
-          <div className="p-7 md:p-12">
+          <div className="p-8 md:p-12 lg:p-14">
 
-            <h3 className="text-2xl md:text-3xl font-bold text-darkBlue mb-5">
+            {/* Small line */}
+            <div className="w-16 h-1 bg-primary rounded-full mb-6"></div>
+
+            {/* Title */}
+            <h3 className="text-2xl lg:text-3xl font-bold text-darkBlue mb-5">
               {title}
             </h3>
 
-            <p className="text-sm md:text-base leading-8 text-slate-700 whitespace-pre-line">
+            {/* Description */}
+            <p className="text-slate-600 leading-8 text-base whitespace-pre-line">
               {description}
             </p>
 
           </div>
         </div>
-
       </div>
     </div>
   );

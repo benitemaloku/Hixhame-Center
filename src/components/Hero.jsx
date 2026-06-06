@@ -6,31 +6,46 @@ import HeroIMG3 from "../assets/33.png"
 
 const Hero = () => {
   return (
-   <section className='max-w-screen-xl mx-auto px-4 py-14
-            flex flex-col-reverse items-center gap-12
-            md:flex-row'>
-            
-        <div className='flex-1 text-center md:text-left'>
-            <h2 className='text-3xl font-bold text-gradient 
-                mb-3 md:text-4xl md:leading-[3rem] lg:text-5xl 
-                lg:leading-[4rem]'>
-            Qetësi, Shëndet dhe Kujdes Natyral
-            </h2>
+   <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50">
+  <div className="max-w-7xl mx-auto px-6 py-24">
+    <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-            <p className='text-sm leading-6 text-darkBlue mb-6 md:w-4/5'>
-              Terapi natyrale dhe profesionale që ndihmon në relaksimin e trupit dhe mendjes, 
-              përmirësimin e qarkullimit të gjakut, largimin e toksinave dhe rritjen e mirëqenies 
-              së përgjithshme përmes metodave tradicionale të hixhames në një ambient modern dhe të sigurt.
+      <div>
+        <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+          Hixhame Profesionale në Prishtinë
+        </span>
 
-            </p>
-            <button className='primary-btn'>Shiko Shërbimet</button>
+        <h1 className="text-5xl lg:text-6xl font-bold text-darkBlue leading-tight text-gradient">
+          Shëndet dhe mirëqenie natyrale
+        </h1>
+
+        <p className="mt-6 text-lg text-slate-600 leading-8">
+          Terapi profesionale e hixhames në një ambient modern,
+          të sigurt dhe relaksues.
+        </p>
+
+        <div className="flex gap-4 mt-8">
+          <button className="px-8 py-4 bg-primary text-white rounded-xl shadow-lg">
+            Rezervo Termin
+          </button>
+
+          <button className="px-8 py-4 border border-slate-300 rounded-xl">
+            Mëso më shumë
+          </button>
         </div>
+      </div>
+
+      <div className="relative">
+        {/* Gallery Images */}
         <div className='flex gap-5 justify-center md:gap-3 lg:gap-5'>
             <img className="hero-img" src={HeroIMG1} alt="Hero Image 1" />
             <img className="mt-[3%] hero-img" src={HeroIMG2} alt="Hero Image 2" />
             <img className="hero-img"src={HeroIMG3} alt="Hero Image 3"  />
         </div>
+      </div>
 
+    </div>
+  </div>
     </section> 
     )
 }

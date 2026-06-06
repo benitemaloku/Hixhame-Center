@@ -58,24 +58,9 @@ export const STATS_DATA = [
 export const SERVICES = [
   {
     imgUrl: ServiceImg1,
-    title: "Hixhame Tradicionale",
+    title: "Hixhame tradicionale & Konsultim profesional",
     description:
-      "Ofrojmë terapi profesionale të hixhames për largimin e toksinave, përmirësimin e qarkullimit të gjakut dhe relaksimin e trupit.",
-  },
-
-  {
-    imgUrl: ServiceImg2,
-    title: "Masazh Relaksues",
-    description:
-      "Masazhe terapeutike dhe relaksuese për largimin e stresit, lodhjes dhe tensionit muskulor në një ambient modern.",
-      reverse: true,
-  },
-
-  {
-    imgUrl: ServiceImg3,
-    title: "Konsultim Profesional",
-    description:
-      "Këshilla dhe konsultime profesionale për mirëqenien tuaj dhe zgjedhjen e trajtimeve më të përshtatshme.",
+      "Ofrojmë terapi profesionale të hixhames për largimin e toksinave, përmirësimin e qarkullimit të gjakut dhe relaksimin e trupit. \n Konsultime të personalizuara për mirëqenien tuaj dhe zgjedhjen e trajtimeve më të përshtatshme.  "
   },
 ];
 

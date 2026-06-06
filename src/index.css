@@ -40,3 +40,16 @@
   }
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+  color: white !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 32px !important;
+  font-weight: 800;
+  text-shadow:
+    0 0 8px rgba(0,0,0,0.8),
+    0 0 16px rgba(0,0,0,0.6);
+}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { FaCalendarAlt } from "react-icons/fa";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const HijamaDays = () => {
@@ -9,25 +8,42 @@ const HijamaDays = () => {
   const [year, setYear] = useState(today.getFullYear());
   const [days, setDays] = useState([]);
   const [loading, setLoading] = useState(false);
- 
-  const months = [
-  "Janar",
-  "Shkurt",
-  "Mars",
-  "Prill",
-  "Maj",
-  "Qershor",
-  "Korrik",
-  "Gusht",
-  "Shtator",
-  "Tetor",
-  "Nëntor",
-  "Dhjetor",
-];
+
+  const [startIndex, setStartIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const [direction, setDirection] = useState("right");
+  const [animationKey, setAnimationKey] = useState(0);
+
+  const monthsSq = [
+    "Janar",
+    "Shkurt",
+    "Mars",
+    "Prill",
+    "Maj",
+    "Qershor",
+    "Korrik",
+    "Gusht",
+    "Shtator",
+    "Tetor",
+    "Nëntor",
+    "Dhjetor",
+  ];
 
   useEffect(() => {
     fetchHijamaDays();
   }, [month, year]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const fetchHijamaDays = async () => {
     try {
@@ -50,65 +66,63 @@ const HijamaDays = () => {
       setLoading(false);
     }
   };
-  const [startIndex, setStartIndex] = useState(0);
 
-    const visibleDays = days.slice(startIndex, startIndex + 3);
+  const visibleCount = isMobile ? 1 : 3;
+  const visibleDays = days.slice(startIndex, startIndex + visibleCount);
 
   return (
-    <section id="hijama-days" className="max-w-[1200px] mx-auto py-20 px-4 scroll-mt-16">
+    <section className="max-w-[1200px] mx-auto py-20 px-4 scroll-mt-16">
 
       {/* HEADER */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-3xl font-bold text-darkBlue mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-darkBlue mb-4">
           Ditët e Hixhames
         </h2>
-        <p className="max-w-2xl mx-auto text-slate-600 text-sm md:text-base">
+        <p className="max-w-2xl mx-auto text-slate-600 text-base">
           Zgjidh muajin dhe vitin për të parë ditët e rekomanduara sipas kalendarit Hixhri.
         </p>
       </div>
 
-      {/* FILTER (clean modern card) */}
+      {/* FILTER */}
       <div className="max-w-3xl mx-auto mb-12">
         <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-6">
 
+          <div className="grid md:grid-cols-2 gap-4">
 
-            <div className="flex items-center justify-center gap-3 mb-6">
-                <p className="text-sm text-slate-500 text-center">
-                    Zgjidh muajin dhe vitin
-                </p>
-            </div>
+            <select
+              value={month}
+              onChange={(e) => {
+                setMonth(Number(e.target.value));
+                setStartIndex(0);
+              }}
+              className="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-darkBlue"
+            >
+              {monthsSq.map((monthName, index) => (
+                <option key={index + 1} value={index + 1}>
+                  {monthName}
+                </option>
+              ))}
+            </select>
 
-    {/* Select Fields */}
-    <div className="grid md:grid-cols-2 gap-4">
+            <select
+              value={year}
+              onChange={(e) => {
+                setYear(Number(e.target.value));
+                setStartIndex(0);
+              }}
+              className="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-darkBlue"
+            >
+              {[2025, 2026, 2027, 2028, 2029, 2030].map((y) => (
+                <option key={y} value={y}>
+                  {y}
+                </option>
+              ))}
+            </select>
 
-      <select
-  value={month}
-  onChange={(e) => setMonth(Number(e.target.value))}
-  className="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-darkBlue"
->
-  {months.map((monthName, index) => (
-    <option key={index + 1} value={index + 1}>
-      {monthName}
-    </option>
-  ))}
-</select>
+          </div>
 
-      <select
-        value={year}
-        onChange={(e) => setYear(Number(e.target.value))}
-        className="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-darkBlue"
-      >
-        {[2025, 2026, 2027, 2028, 2029, 2030].map((y) => (
-          <option key={y} value={y}>
-            {y}
-          </option>
-        ))}
-      </select>
-
-    </div>
-
-  </div>
-</div>
+        </div>
+      </div>
 
       {/* STATES */}
       {loading && (
@@ -121,62 +135,76 @@ const HijamaDays = () => {
         </p>
       )}
 
-     {/* CARDS SLIDER */}
-<div className="relative max-w-5xl mx-auto">
+      {/* SLIDER */}
+      <div className="relative max-w-5xl mx-auto">
 
-  {/* LEFT BUTTON */}
-  {startIndex > 0 && (
-<button
-  onClick={() => setStartIndex(startIndex - 1)}
-  className="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg border border-slate-200 flex items-center justify-center hover:scale-105 transition"
->
-  <FaChevronLeft className="text-darkBlue text-xl" />
-</button>  )}
+        {/* LEFT */}
+        {startIndex > 0 && (
+          <button
+            onClick={() => {
+              setDirection("left");
+              setStartIndex((prev) => prev - 1);
+              setAnimationKey((prev) => prev + 1);
+            }}
+            className="absolute -left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg border flex items-center justify-center hover:scale-105 transition"
+          >
+            <FaChevronLeft className="text-darkBlue text-xl" />
+          </button>
+        )}
 
-  <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-    {visibleDays.map((day, index) => (
-      <div
-        key={index}
-        className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition p-6 text-center"
-      >
+        {/* CARDS */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <div className="w-14 h-14 mx-auto rounded-full bg-red-50 flex items-center justify-center mb-4">
-          <span className="text-lg font-bold text-red-500">
-            {day.hijri.day}
-          </span>
+          {visibleDays.map((day, index) => (
+            <div
+              key={`${animationKey}-${index}`}
+              className={`
+                bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg
+                p-6 text-center
+                ${direction === "right" ? "animate-right" : "animate-left"}
+              `}
+            >
+
+              {/* Gregorian */}
+              <div className="w-14 h-14 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <span className="text-2xl font-bold text-primary">
+                  {day.gregorian.day}
+                </span>
+              </div>
+
+              <h3 className="text-lg font-medium text-darkBlue">
+                {monthsSq[Number(day.gregorian.month.number) - 1]}
+              </h3>
+
+              <p className="text-base text-slate-500 mb-3">
+                {day.gregorian.year}
+              </p>
+
+              {/* Hijri */}
+              <div className="text-base text-slate-600 border-t pt-3">
+                {day.hijri.day} {day.hijri.month.en} {day.hijri.year} H
+              </div>
+
+            </div>
+          ))}
+
         </div>
 
-        <h3 className="text-lg font-bold text-darkBlue">
-          {day.hijri.month.en}
-        </h3>
-
-        <p className="text-sm text-slate-500 mb-3">
-          {day.hijri.year} H
-        </p>
-
-        <div className="text-sm text-slate-600 border-t pt-3">
-          {day.gregorian.day} {day.gregorian.month.en} {day.gregorian.year}
-        </div>
-
-        <button className="mt-5 w-full py-2.5 rounded-xl bg-darkBlue text-white text-sm hover:opacity-90 transition">
-          Rezervo Termin
-        </button>
+        {/* RIGHT */}
+        {startIndex + visibleCount < days.length && (
+          <button
+            onClick={() => {
+              setDirection("right");
+              setStartIndex((prev) => prev + 1);
+              setAnimationKey((prev) => prev + 1);
+            }}
+            className="absolute -right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg border flex items-center justify-center hover:scale-105 transition"
+          >
+            <FaChevronRight className="text-darkBlue text-xl" />
+          </button>
+        )}
 
       </div>
-    ))}
-  </div>
-
-  {/* RIGHT BUTTON */}
-  {startIndex + 3 < days.length && (
-<button
-  onClick={() => setStartIndex(startIndex + 1)}
-  className="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg border border-slate-200 flex items-center justify-center hover:scale-105 transition"
->
-  <FaChevronRight className="text-darkBlue text-xl" />
-</button>
-  )}
-
-</div>
     </section>
   );
 };

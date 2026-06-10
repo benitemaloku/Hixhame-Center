@@ -43,10 +43,10 @@ const ServiceInfoCard = ({
 
         {/* CONTENT */}
         <div className="flex-1 flex items-center">
-          <div className="p-8 md:p-12 lg:p-14">
+          <div className="p-8 md:p-12 lg:p-14 text-center md:text-left">
 
             {/* Small line */}
-            <div className="w-16 h-1 bg-primary rounded-full mb-6"></div>
+            <div className="w-16 h-1 bg-primary rounded-full mb-6 mx-auto md:mx-0"></div>
 
             {/* Title */}
             <h3 className="text-2xl lg:text-3xl font-bold text-darkBlue mb-5">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { RiMenu4Line, RiCloseFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import { MobileNavbar } from "./MobileNavbar";
 import logo from "../assets/logo.png";
 
@@ -11,7 +12,6 @@ export const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // close dropdown when clicking outside
   useEffect(() => {
     const closeMenu = (e) => {
       if (!e.target.closest(".services-dropdown")) {
@@ -27,13 +27,13 @@ export const Navbar = () => {
     <>
       {isMenuOpen && <MobileNavbar setIsMenuOpen={setIsMenuOpen} />}
 
-      <div className="bg-slate-100 sticky top-0 z-10">
-        <nav className="max-w mx-auto px-4 sm:px-6 lg:px-8 py-7">
+      <header className="bg-slate-100 sticky top-0 z-50 border-b border-slate-200">
+        <nav className="max-w-20xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
           <div className="flex items-center justify-between">
 
             {/* LOGO */}
-            <div className="flex items-center gap-4 relative">
+            <Link to="/" className="flex items-center gap-4 relative">
               <img
                 className="w-28 absolute top-[-20px] object-contain"
                 src={logo}
@@ -44,23 +44,21 @@ export const Navbar = () => {
                 <span className="text-lg font-bold tracking-wide text-primary">
                   HIXHAME CENTER
                 </span>
-
                 <span className="text-xs text-gray-600 tracking-[4px]">
                   PRISHTINË
                 </span>
               </div>
-            </div>
+            </Link>
 
             {/* DESKTOP MENU */}
-            <ul className="hidden lg:flex items-center gap-12 xl:gap-16">
+            <ul className="hidden lg:flex items-center gap-12">
 
               <li>
-                <a href="#" className="menu-item">
+                <Link to="/" className="menu-item">
                   Faqja Kryesore
-                </a>
+                </Link>
               </li>
 
-              {/* SERVICES DROPDOWN */}
               <li className="relative services-dropdown">
                 <button
                   onClick={() => setOpenServices(!openServices)}
@@ -70,31 +68,22 @@ export const Navbar = () => {
                 </button>
 
                 {openServices && (
-                  <ul className="absolute left-0 top-10 bg-white shadow-lg rounded-xl py-2 w-56 border border-slate-100 z-50">
+                  <ul className="absolute left-0 top-10 bg-white shadow-lg rounded-xl py-2 w-60 border border-slate-100 z-50">
 
                     <li>
-                      <a
-                        href="#ourservice"
-                        className="block px-4 py-2 text-sm text-primary hover:bg-slate-50"
-                      >
-                        Shërbimet profesionale
+                      <a href="/#ourservice" className="block px-4 py-2 text-sm text-primary hover:bg-slate-50">
+                        Shërbimet Profesionale
                       </a>
                     </li>
 
                     <li>
-                      <a
-                        href="#what-is-hijama"
-                        className="block px-4 py-2 text-sm text-primary hover:bg-slate-50"
-                      >
+                      <Link to="/learn-more" className="block px-4 py-2 text-sm text-primary hover:bg-slate-50">
                         Çka është Hixhama
-                      </a>
+                      </Link>
                     </li>
 
                     <li>
-                      <a
-                        href="#hijama-days"
-                        className="block px-4 py-2 text-sm text-primary hover:bg-slate-50"
-                      >
+                      <a href="/#hijama-days" className="block px-4 py-2 text-sm text-primary hover:bg-slate-50">
                         Ditët e Hixhames
                       </a>
                     </li>
@@ -104,13 +93,13 @@ export const Navbar = () => {
               </li>
 
               <li>
-                <a href="#ourwork" className="menu-item">
+                <a href="/#ourwork" className="menu-item">
                   Rreth Nesh
                 </a>
               </li>
 
               <li>
-                <a href="#contact" className="menu-item">
+                <a href="/#contact" className="menu-item">
                   Kontakt
                 </a>
               </li>
@@ -120,19 +109,18 @@ export const Navbar = () => {
             {/* BUTTONS */}
             <div className="flex items-center gap-3">
 
-              <button
-                className="hidden lg:block bg-primary text-white 
-                text-sm lg:text-base px-4 lg:px-8 py-2 rounded 
-                hover:bg-blue-200 hover:text-primary transition-all duration-300"
+              {/* desktop only */}
+              <a
+                href="/#contact"
+                className="hidden lg:inline-flex primary-btn items-center justify-center"
               >
-                Rezervo takimin
-              </button>
+                Rezervo Takimin
+              </a>
 
+              {/* mobile button */}
               <button
                 onClick={toggleMenu}
-                className="w-10 h-10 sm:w-11 sm:h-11 
-                bg-blue-200 text-primary text-2xl 
-                flex items-center justify-center rounded lg:hidden"
+                className="lg:hidden w-11 h-11 bg-blue-200 text-primary text-2xl rounded-lg flex items-center justify-center"
               >
                 {isMenuOpen ? <RiCloseFill /> : <RiMenu4Line />}
               </button>
@@ -141,7 +129,7 @@ export const Navbar = () => {
 
           </div>
         </nav>
-      </div>
+      </header>
     </>
   );
 };

@@ -60,7 +60,7 @@ export const SERVICES = [
     imgUrl: ServiceImg1,
     title: "Hixhame tradicionale & Konsultim profesional",
     description:
-      "Ofrojmë terapi profesionale të hixhames për largimin e toksinave, përmirësimin e qarkullimit të gjakut dhe relaksimin e trupit. \n Konsultime të personalizuara për mirëqenien tuaj dhe zgjedhjen e trajtimeve më të përshtatshme.  "
+      "Ofrojmë terapi profesionale të hixhames për largimin e toksinave, përmirësimin e qarkullimit të gjakut dhe relaksimin e trupit. Konsultime të personalizuara për mirëqenien tuaj dhe zgjedhjen e trajtimeve më të përshtatshme.  "
   },
 ];
 

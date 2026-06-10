@@ -1,25 +1,17 @@
-import React from 'react'
-import { Navbar } from './components/Navbar'
-import Hero from './components/Hero'
-import Stats from './components/Stats'
-import  OurServices  from './components/OurServices'
-import OurWork from './components/OurWork'
-import HijamaDays from './components/HijamaDays'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Contact from './components/Contact'
+import Home from "./pages/Home";
+import LearnMore from "./pages/LearnMore";
 
 function App() {
   return (
-    <div className='bg-background'>
-      <Navbar />
-      <Hero />
-      <OurServices/>
-      <OurWork/>
-      <Stats/>
-      <HijamaDays/>
-      <Contact/>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/learn-more" element={<LearnMore />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

@@ -43,15 +43,15 @@ const BookAppointment = () => {
       setLoading(true);
 
       const response = await fetch(
-        "https://hixhame-backend.onrender.com/api",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(form),
-        }
-      );
+          "https://hixhame-backend.onrender.com/book-appointment",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(form),
+          }
+        );
 
       const data = await response.json();
 

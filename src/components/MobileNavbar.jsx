@@ -102,9 +102,9 @@ export const MobileNavbar = ({ setIsMenuOpen }) => {
           to="/book-appointment"
           onClick={() => setIsMenuOpen(false)}
           className="mt-8 w-fit px-4 py-2 bg-primary text-white rounded hover:bg-blue-200 hover:text-primary transition"
-        </Link>
+        >
           Rezervo takimin
-        </a>
+        </Link>
 
       </div>
 

@@ -43,7 +43,7 @@ const BookAppointment = () => {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/book-appointment",
+        "https://hixhame-backend.onrender.com/api",
         {
           method: "POST",
           headers: {

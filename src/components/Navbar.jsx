@@ -110,12 +110,12 @@ export const Navbar = () => {
             <div className="flex items-center gap-3">
 
               {/* desktop only */}
-              <a
-                href="/#contact"
+              <Link
+                to="/book-appointment"
                 className="hidden lg:inline-flex primary-btn items-center justify-center"
               >
                 Rezervo Takimin
-              </a>
+              </Link>
 
               {/* mobile button */}
               <button

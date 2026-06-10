@@ -10,6 +10,13 @@ app.use(express.json());
 
 const client = new Client({
   authStrategy: new LocalAuth(),
+  puppeteer: {
+    headless: true,
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+    ],
+  },
 });
 
 client.on("qr", (qr) => {
@@ -29,15 +36,14 @@ client.on("auth_failure", (msg) => {
   console.log("❌ Auth Failure:", msg);
 });
 
-client.on("loading_screen", (percent, message) => {
-  console.log(`${percent}%`, message);
-});
-
 client.on("disconnected", (reason) => {
   console.log("❌ Disconnected:", reason);
 });
 
-// TEST ROUTE
+app.get("/", (req, res) => {
+  res.send("Backend is running");
+});
+
 app.get("/test", async (req, res) => {
   try {
     await client.sendMessage(
@@ -52,7 +58,6 @@ app.get("/test", async (req, res) => {
   }
 });
 
-// ROUTE PER REZERVIME
 app.post("/book-appointment", async (req, res) => {
   try {
     const { name, phone, service, date, time } = req.body;
@@ -86,10 +91,10 @@ app.post("/book-appointment", async (req, res) => {
   }
 });
 
-// START WHATSAPP
 client.initialize();
 
-// START SERVER
-app.listen(5000, () => {
-  console.log("🚀 Server running on port 5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });

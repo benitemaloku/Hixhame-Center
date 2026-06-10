@@ -12,7 +12,7 @@
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, #285091 11.46%, #4eBbf1 91.65%);
+  background: linear-gradient(90deg, #285091 11.46%, #4EBBF1 91.65%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -21,21 +21,23 @@
 @layer components {
   .menu-item {
     @apply text-sm font-medium text-primary relative cursor-pointer
-    after:content-[''] after:w-full after:h-[3px] after:bg-primary
-    after:absolute after:left-0 after:-bottom-2
-    after:-translate-x-11 after:opacity-0 after:transition-all
-    hover:after:translate-x-0 hover:after:opacity-100;
+      after:content-[''] after:w-full after:h-[3px]
+      after:bg-primary after:absolute after:left-0
+      after:-bottom-2 after:-translate-x-11
+      after:opacity-0 after:transition-all
+      hover:after:translate-x-0 hover:after:opacity-100;
   }
 
-  .hero-img{
+  .hero-img {
     @apply w-1/4 h-5/6 rounded md:w-28 md:h-60 lg:w-44 lg:h-80;
   }
 
-  .primary-btn{
-    @apply h-11 bg-primary text-white text-sm px-6 rounded hover:bg-blue-200 hover:text-primary
+  .primary-btn {
+    @apply h-11 bg-primary text-white text-sm px-6 rounded
+      hover:bg-blue-200 hover:text-primary;
   }
 
-  .gallery-img{
+  .gallery-img {
     @apply w-full h-72 md:h-full object-cover;
   }
 }
@@ -50,8 +52,8 @@
   font-size: 32px !important;
   font-weight: 800;
   text-shadow:
-    0 0 8px rgba(0,0,0,0.8),
-    0 0 16px rgba(0,0,0,0.6);
+    0 0 8px rgba(0, 0, 0, 0.8),
+    0 0 16px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes slideRight {
@@ -59,17 +61,7 @@
     opacity: 0;
     transform: translateX(40px);
   }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 
-@@keyframes slideRight {
-  0% {
-    opacity: 0;
-    transform: translateX(40px);
-  }
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -81,6 +73,7 @@
     opacity: 0;
     transform: translateX(-40px);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);

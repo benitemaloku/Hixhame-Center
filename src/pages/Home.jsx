@@ -7,7 +7,6 @@ import OurServices from "../components/OurServices";
 import OurWork from "../components/OurWork";
 import HijamaDays from "../components/HijamaDays";
 import Contact from "../components/Contact";
-import BookAppointment from "./BookAppointment";
 
 const Home = () => {
   return (

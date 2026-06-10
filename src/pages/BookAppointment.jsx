@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
 
 const BookAppointment = () => {
-  const [loading, setLoading] = useState(false);
-
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -25,12 +23,12 @@ const BookAppointment = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (
-      !form.name ||
-      !form.phone ||
+      !form.name.trim() ||
+      !form.phone.trim() ||
       !form.service ||
       !form.date ||
       !form.time
@@ -39,65 +37,56 @@ const BookAppointment = () => {
       return;
     }
 
-    try {
-      setLoading(true);
+    const message = `
+📅 REZERVIM I RI PËR HIXHAME
 
-      const response = await fetch(
-          "https://hixhame-backend.onrender.com/book-appointment",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(form),
-          }
-        );
+👤 Emri dhe Mbiemri: ${form.name}
+📞 Telefoni: ${form.phone}
+🩺 Shërbimi: ${form.service}
+📆 Data: ${form.date}
+⏰ Ora: ${form.time}
+`;
 
-      const data = await response.json();
+    // Vendos numrin tënd të WhatsApp-it
+    const whatsappNumber = "38343569577";
 
-      if (data.success) {
-        alert("Rezervimi u dërgua me sukses!");
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      message
+    )}`;
 
-        setForm({
-          name: "",
-          phone: "",
-          service: "",
-          date: "",
-          time: "",
-        });
-      } else {
-        alert("Gabim gjatë dërgimit.");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Nuk u lidh me serverin.");
-    } finally {
-      setLoading(false);
-    }
+    window.open(whatsappUrl, "_blank");
+
+    setForm({
+      name: "",
+      phone: "",
+      service: "",
+      date: "",
+      time: "",
+    });
   };
 
   return (
     <>
       <Navbar />
 
-      <section
-        id="book-appointment"
-        className="max-w-5xl mx-auto py-20 px-4"
-      >
+      <section className="max-w-5xl mx-auto py-20 px-4 min-h-screen">
+        {/* Titulli */}
         <div className="text-center mb-10">
           <h1 className="text-3xl md:text-4xl font-bold text-darkBlue">
             Rezervo Takimin
           </h1>
 
           <p className="text-slate-600 mt-3">
-            Zgjidh shërbimin dhe cakto termin tënd lehtë dhe shpejt
+            Plotëso formularin dhe rezervimi do të dërgohet direkt në WhatsApp.
           </p>
         </div>
 
+        {/* Forma */}
         <form
           onSubmit={handleSubmit}
           className="bg-white shadow-lg border border-slate-100 rounded-2xl p-8 grid md:grid-cols-2 gap-6"
         >
+          {/* Emri */}
           <div>
             <label className="text-sm text-slate-600">
               Emri dhe Mbiemri
@@ -108,14 +97,15 @@ const BookAppointment = () => {
               name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="Shkruaj emrin"
-              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 focus:border-primary outline-none"
+              placeholder="Shkruaj emrin dhe mbiemrin"
+              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"
             />
           </div>
 
+          {/* Telefoni */}
           <div>
             <label className="text-sm text-slate-600">
-              Numri i telefonit
+              Numri i Telefonit
             </label>
 
             <input
@@ -123,11 +113,12 @@ const BookAppointment = () => {
               name="phone"
               value={form.phone}
               onChange={handleChange}
-              placeholder="+383 xx xxx-xxx"
-              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 focus:border-primary outline-none"
+              placeholder="+383 xx xxx xxx"
+              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"
             />
           </div>
 
+          {/* Shërbimi */}
           <div>
             <label className="text-sm text-slate-600">
               Shërbimi
@@ -137,9 +128,9 @@ const BookAppointment = () => {
               name="service"
               value={form.service}
               onChange={handleChange}
-              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 focus:border-primary outline-none"
+              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"
             >
-              <option value="">Zgjedh shërbimin</option>
+              <option value="">Zgjidh shërbimin</option>
 
               {services.map((service, index) => (
                 <option key={index} value={service}>
@@ -149,6 +140,7 @@ const BookAppointment = () => {
             </select>
           </div>
 
+          {/* Data */}
           <div>
             <label className="text-sm text-slate-600">
               Data
@@ -159,10 +151,11 @@ const BookAppointment = () => {
               name="date"
               value={form.date}
               onChange={handleChange}
-              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 focus:border-primary outline-none"
+              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"
             />
           </div>
 
+          {/* Ora */}
           <div className="md:col-span-2">
             <label className="text-sm text-slate-600">
               Ora
@@ -173,19 +166,17 @@ const BookAppointment = () => {
               name="time"
               value={form.time}
               onChange={handleChange}
-              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 focus:border-primary outline-none"
+              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"
             />
           </div>
 
+          {/* Butoni */}
           <div className="md:col-span-2">
             <button
               type="submit"
-              disabled={loading}
-              className="w-full primary-btn text-base disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full primary-btn text-base"
             >
-              {loading
-                ? "Duke dërguar rezervimin..."
-                : "Konfirmo Rezervimin"}
+              Dërgo Rezervimin në WhatsApp
             </button>
           </div>
         </form>

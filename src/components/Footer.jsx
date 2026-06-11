@@ -9,7 +9,7 @@ import { FaViber } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="mt-5 bg-primary">
+    <footer className="mt-5 bg-darkBlue">
       <div className="max-w-7xl mx-auto px-4 py-5">
 
         <div className="flex justify-center gap-5">

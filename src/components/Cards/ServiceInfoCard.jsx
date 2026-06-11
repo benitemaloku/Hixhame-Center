@@ -49,12 +49,12 @@ const ServiceInfoCard = ({
             <div className="w-16 h-1 bg-primary rounded-full mb-6 mx-auto md:mx-0"></div>
 
             {/* Title */}
-            <h3 className="text-2xl lg:text-3xl font-bold text-darkBlue mb-5">
+            <h3 className="text-xl lg:text-2xl font-medium text-darkBlue mb-5">
               {title}
             </h3>
 
             {/* Description */}
-            <p className="text-slate-600 leading-8 text-base whitespace-pre-line">
+            <p className="text-slate-600 leading-7 text-sm md:text-base whitespace-pre-line">
               {description}
             </p>
 

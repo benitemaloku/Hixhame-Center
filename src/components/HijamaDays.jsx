@@ -71,14 +71,16 @@ const HijamaDays = () => {
   const visibleDays = days.slice(startIndex, startIndex + visibleCount);
 
   return (
-    <section className="max-w-[1200px] mx-auto py-20 px-4 scroll-mt-16">
+    <section 
+      id="hijama-days"
+      className="max-w-[1200px] mx-auto py-20 px-4 scroll-mt-16">
 
       {/* HEADER */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-8">
         <h2 className="text-3xl md:text-4xl font-bold text-darkBlue mb-4">
           Ditët e Hixhames
         </h2>
-        <p className="max-w-2xl mx-auto text-slate-600 text-base">
+        <p className="max-w-2xl mx-auto text-slate-600 text-base leading-8">
           Zgjidh muajin dhe vitin për të parë ditët e rekomanduara sipas kalendarit Hixhri.
         </p>
       </div>

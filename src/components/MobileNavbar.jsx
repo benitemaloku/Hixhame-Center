@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 export const MobileNavbar = ({ setIsMenuOpen }) => {
   const [openServices, setOpenServices] = useState(false);
@@ -7,112 +8,111 @@ export const MobileNavbar = ({ setIsMenuOpen }) => {
   return (
     <div className="fixed inset-0 z-50 flex">
 
-      {/* SIDEBAR */}
-      <div className="w-72 h-screen bg-slate-100 p-8 flex flex-col shadow-xl pt-32">
+      {/* OVERLAY */}
+      <div
+        onClick={() => setIsMenuOpen(false)}
+        className="flex-1 bg-black/40 backdrop-blur-sm transition"
+      />
 
-  
+      {/* SIDEBAR */}
+      <div className="w-64 h-screen bg-white/95 backdrop-blur-md shadow-2xl p-6 pt-32 animate-in slide-in-from-left duration-300">
 
         {/* MENU */}
-        <ul className="flex flex-col gap-6">
+        <ul className="flex flex-col gap-3">
 
           {/* HOME */}
           <li>
             <Link
               to="/"
-              onClick={() => setIsMenuOpen(false)}
-              className="text-base font-medium text-primary hover:ml-2 transition"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setIsMenuOpen(false);
+              }}
+              className="block px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-slate-100 hover:text-primary transition"
             >
               Faqja Kryesore
             </Link>
           </li>
 
-          {/* SERVICES DROPDOWN */}
+          {/* SERVICES */}
           <li>
             <button
               onClick={() => setOpenServices(!openServices)}
-              className="text-base font-medium text-primary flex items-center justify-between w-full"
+              className="w-full flex justify-between items-center px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-slate-100 transition"
             >
               Shërbimet
-              <span>{openServices ? "−" : "+"}</span>
+              <span className="text-lg">{openServices ? "−" : "+"}</span>
             </button>
 
             {openServices && (
-              <ul className="mt-3 ml-4 flex flex-col gap-4 border-l border-slate-200 pl-4">
+              <div className="mt-2 ml-2 pl-3 border-l border-slate-200 flex flex-col gap-2">
 
-                <li>
-                  <a
-                    href="/#ourservice"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-sm text-slate-600 hover:text-primary transition"
-                  >
-                    Shërbimet Profesionale
-                  </a>
-                </li>
+                <HashLink
+                  smooth
+                  to="/#ourservice"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-sm text-slate-600 hover:text-primary py-1 transition"
+                >
+                  Shërbimet Profesionale
+                </HashLink>
 
-                <li>
-                  <Link
-                    to="/learn-more"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-sm text-slate-600 hover:text-primary transition"
-                  >
-                    Çka është Hixhama
-                  </Link>
-                </li>
+                <Link
+                  to="/learn-more"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-sm text-slate-600 hover:text-primary py-1 transition"
+                >
+                  Çka është Hixhama
+                </Link>
 
-                <li>
-                  <a
-                    href="/#hijama-days"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-sm text-slate-600 hover:text-primary transition"
-                  >
-                    Ditët e Hixhames
-                  </a>
-                </li>
+                <HashLink
+                  smooth
+                  to="/#hijama-days"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-sm text-slate-600 hover:text-primary py-1 transition"
+                >
+                  Ditët e Hixhames
+                </HashLink>
 
-              </ul>
+              </div>
             )}
           </li>
 
           {/* ABOUT */}
           <li>
-            <a
-              href="/#ourwork"
+            <HashLink
+              smooth
+              to="/#ourwork"
               onClick={() => setIsMenuOpen(false)}
-              className="text-base font-medium text-primary hover:ml-2 transition"
+              className="block px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-slate-100 hover:text-primary transition"
             >
               Rreth Nesh
-            </a>
+            </HashLink>
           </li>
 
           {/* CONTACT */}
           <li>
-            <a
-              href="/#contact"
+            <HashLink
+              smooth
+              to="/#contact"
               onClick={() => setIsMenuOpen(false)}
-              className="text-base font-medium text-primary hover:ml-2 transition"
+              className="block px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-slate-100 hover:text-primary transition"
             >
               Kontakt
-            </a>
+            </HashLink>
           </li>
 
         </ul>
 
-        {/* BUTTON */}
+        {/* CTA BUTTON */}
         <Link
           to="/book-appointment"
           onClick={() => setIsMenuOpen(false)}
-          className="mt-8 w-fit px-4 py-2 bg-primary text-white rounded hover:bg-blue-200 hover:text-primary transition"
+          className="mt-6 w-full inline-flex items-center justify-center primary-btn"
         >
           Rezervo takimin
         </Link>
 
       </div>
-
-      {/* OVERLAY */}
-      <div
-        onClick={() => setIsMenuOpen(false)}
-        className="flex-1 bg-black/40"
-      />
     </div>
   );
 };

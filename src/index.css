@@ -20,7 +20,7 @@
 
 @layer components {
   .menu-item {
-    @apply text-sm font-medium text-primary relative cursor-pointer
+    @apply text-base font-medium text-primary relative cursor-pointer
       after:content-[''] after:w-full after:h-[3px]
       after:bg-primary after:absolute after:left-0
       after:-bottom-2 after:-translate-x-11
@@ -34,7 +34,7 @@
 
   .primary-btn {
     @apply h-11 bg-primary text-white text-sm px-6 rounded
-      hover:bg-blue-200 hover:text-primary;
+      hover:bg-blue-200 hover:text-primary md:text-base ;
   }
 
   .gallery-img {

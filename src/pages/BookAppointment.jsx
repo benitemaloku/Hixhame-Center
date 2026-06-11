@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const BookAppointment = () => {
   const [form, setForm] = useState({
@@ -81,14 +82,14 @@ const BookAppointment = () => {
           </p>
         </div>
 
-        {/* Forma */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-lg border border-slate-100 rounded-2xl p-8 grid md:grid-cols-2 gap-6"
+          className="bg-white/90 backdrop-blur-md shadow-xl border border-slate-100 rounded-3xl p-8 md:p-10 grid md:grid-cols-2 gap-6"
         >
+
           {/* Emri */}
           <div>
-            <label className="text-sm text-slate-600">
+            <label className="text-sm font-medium text-slate-600 mb-2 block">
               Emri dhe Mbiemri
             </label>
 
@@ -98,13 +99,16 @@ const BookAppointment = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="Shkruaj emrin dhe mbiemrin"
-              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200
+              bg-slate-50 text-slate-700 placeholder-slate-400
+              focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
+              transition"
             />
           </div>
 
           {/* Telefoni */}
           <div>
-            <label className="text-sm text-slate-600">
+            <label className="text-sm font-medium text-slate-600 mb-2 block">
               Numri i Telefonit
             </label>
 
@@ -113,14 +117,17 @@ const BookAppointment = () => {
               name="phone"
               value={form.phone}
               onChange={handleChange}
-              placeholder="+383 xx xxx xxx"
-              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"
+              placeholder="+383 44 123 456"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200
+              bg-slate-50 text-slate-700 placeholder-slate-400
+              focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
+              transition"
             />
           </div>
 
           {/* Shërbimi */}
           <div>
-            <label className="text-sm text-slate-600">
+            <label className="text-sm font-medium text-slate-600 mb-2 block">
               Shërbimi
             </label>
 
@@ -128,10 +135,12 @@ const BookAppointment = () => {
               name="service"
               value={form.service}
               onChange={handleChange}
-              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200
+              bg-slate-50 text-slate-700
+              focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
+              transition"
             >
               <option value="">Zgjidh shërbimin</option>
-
               {services.map((service, index) => (
                 <option key={index} value={service}>
                   {service}
@@ -142,7 +151,7 @@ const BookAppointment = () => {
 
           {/* Data */}
           <div>
-            <label className="text-sm text-slate-600">
+            <label className="text-sm font-medium text-slate-600 mb-2 block">
               Data
             </label>
 
@@ -151,13 +160,16 @@ const BookAppointment = () => {
               name="date"
               value={form.date}
               onChange={handleChange}
-              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200
+              bg-slate-50 text-slate-700
+              focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
+              transition"
             />
           </div>
 
           {/* Ora */}
           <div className="md:col-span-2">
-            <label className="text-sm text-slate-600">
+            <label className="text-sm font-medium text-slate-600 mb-2 block">
               Ora
             </label>
 
@@ -166,7 +178,10 @@ const BookAppointment = () => {
               name="time"
               value={form.time}
               onChange={handleChange}
-              className="w-full mt-2 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200
+              bg-slate-50 text-slate-700
+              focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
+              transition"
             />
           </div>
 
@@ -181,6 +196,8 @@ const BookAppointment = () => {
           </div>
         </form>
       </section>
+
+      <Footer />
     </>
   );
 };

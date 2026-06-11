@@ -48,7 +48,7 @@ const OurWork = () => {
       <div className="max-w-7xl mx-auto px-4">
 
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-darkBlue mb-6">
             Rreth Nesh
           </h2>

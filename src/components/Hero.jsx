@@ -16,7 +16,7 @@ const Hero = () => {
           Hixhame Profesionale në Prishtinë
         </span>
 
-        <h1 className="text-6xl  font-bold text-darkBlue leading-tight text-gradient">
+        <h1 className="text-6xl  font-bold leading-tight text-gradient">
           Shëndet dhe mirëqenie natyrale
         </h1>
 

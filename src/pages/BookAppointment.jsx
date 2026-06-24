@@ -67,6 +67,7 @@ export default function BookAppointment() {
         break;
 
       case "telegram":
+        // Ndrysho username sipas llogarisë tënde
         url = `https://t.me/USERNAME_YT`;
         break;
 
@@ -182,18 +183,13 @@ export default function BookAppointment() {
             </label>
 
             <input
-              type="text"
+              type="date"
               name="date"
               value={form.date}
-              placeholder="Zgjidh datën"
-              readOnly
-              onFocus={(e) => (e.target.type = "date")}
-              onBlur={(e) => {
-                if (!e.target.value) e.target.type = "text";
-              }}
-              min={new Date().toISOString().split("T")[0]}
               onChange={handleChange}
+              min={new Date().toISOString().split("T")[0]}
               className="form-input"
+            
             />
           </div>
 
@@ -202,19 +198,13 @@ export default function BookAppointment() {
               Ora
             </label>
 
-           <input
-              type="text"
+            <input
+              type="time"
               name="time"
               value={form.time}
-              placeholder="Zgjidh orën"
-              readOnly
-              onFocus={(e) => (e.target.type = "time")}
-              onBlur={(e) => {
-                if (!e.target.value) e.target.type = "text";
-              }}
+              onChange={handleChange}
               min="09:00"
               max="18:00"
-              onChange={handleChange}
               className="form-input"
             />
           </div>

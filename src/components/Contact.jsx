@@ -3,7 +3,13 @@ import {
   RiPhoneFill,
   RiMapPin2Fill,
   RiMailFill,
+  RiInstagramLine,
+  RiFacebookCircleLine,
+  RiTelegramLine,
+  RiWhatsappLine,
 } from "react-icons/ri";
+
+import { FaViber } from "react-icons/fa";
 
 const Contact = () => {
   return (
@@ -11,7 +17,7 @@ const Contact = () => {
       id="contact"
       className="max-w-7xl mx-auto py-24 px-4 scroll-mt-6"
     >
-      {/* Header */}
+      {/* HEADER */}
       <div className="text-center mb-14">
         <h2 className="text-3xl md:text-4xl font-bold text-darkBlue mb-5">
           Kontakti
@@ -23,54 +29,125 @@ const Contact = () => {
         </p>
       </div>
 
-      {/* Contact Cards */}
+      {/* CONTACT CARDS */}
       <div className="grid md:grid-cols-3 gap-6 mb-12">
 
-        {/* Telefon */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center">
+        {/* TELEFON */}
+        <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-all duration-300">
           <RiPhoneFill className="mx-auto text-3xl text-primary mb-4" />
-
-          <h3 className="text-lg font-semibold text-darkBlue mb-2">
-            Telefon
-          </h3>
-
-          <p className="text-slate-600">
-            +383 49 797 669
-          </p>
+          <h3 className="text-lg font-semibold text-darkBlue mb-2">Telefon</h3>
+          <p className="text-slate-600">+383 49 797 669</p>
         </div>
 
-        {/* Email */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center">
+        {/* EMAIL */}
+        <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-all duration-300">
           <RiMailFill className="mx-auto text-3xl text-primary mb-4" />
-
-          <h3 className="text-lg font-semibold text-darkBlue mb-2">
-            Email
-          </h3>
-
-          <p className="text-slate-600">
-            info@hixhamecenter.com
-          </p>
+          <h3 className="text-lg font-semibold text-darkBlue mb-2">Email</h3>
+          <p className="text-slate-600">info@hixhamecenter.com</p>
         </div>
 
-        {/* Adresa */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center">
+        {/* ADRESA */}
+        <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-all duration-300">
           <RiMapPin2Fill className="mx-auto text-3xl text-primary mb-4" />
-
-          <h3 className="text-lg font-semibold text-darkBlue mb-2">
-            Adresa
-          </h3>
-
+          <h3 className="text-lg font-semibold text-darkBlue mb-2">Adresa</h3>
           <p className="text-slate-600">
-            Rr. Xhavit Hoxha, Dardani 
+            Rr. Xhavit Hoxha, Dardani
             <br />
             Prishtinë, Kosovë
           </p>
         </div>
+      </div>
+
+      {/* SOCIAL MEDIA */}
+      <div className="flex justify-center gap-5 mb-12">
+
+        <a
+          href="https://instagram.com/hixhame_center_prishtine"
+          target="_blank"
+          rel="noreferrer"
+          className="
+            w-12 h-12 rounded-full
+            bg-slate-100 border border-slate-200
+            flex items-center justify-center
+            text-slate-600 text-2xl
+            hover:bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500 hover:text-white
+            hover:scale-110
+            transition-all duration-300
+          "
+        >
+          <RiInstagramLine />
+        </a>
+
+        <a
+          href="https://facebook.com/hixhamecenterprishtine"
+          target="_blank"
+          rel="noreferrer"
+          className="
+            w-12 h-12 rounded-full
+            bg-slate-100 border border-slate-200
+            flex items-center justify-center
+            text-slate-600 text-2xl
+            hover:bg-blue-600 hover:text-white
+            hover:scale-110
+            transition-all duration-300
+          "
+        >
+          <RiFacebookCircleLine />
+        </a>
+
+        <a
+          href="https://t.me/hajdariS"
+          target="_blank"
+          rel="noreferrer"
+          className="
+            w-12 h-12 rounded-full
+            bg-slate-100 border border-slate-200
+            flex items-center justify-center
+            text-slate-600 text-2xl
+            hover:bg-sky-500 hover:text-white
+            hover:scale-110
+            transition-all duration-300
+          "
+        >
+          <RiTelegramLine />
+        </a>
+
+        <a
+          href="https://wa.me/38349797669"
+          target="_blank"
+          rel="noreferrer"
+          className="
+            w-12 h-12 rounded-full
+            bg-slate-100 border border-slate-200
+            flex items-center justify-center
+            text-slate-600 text-2xl
+            hover:bg-green-500 hover:text-white
+            hover:scale-110
+            transition-all duration-300
+          "
+        >
+          <RiWhatsappLine />
+        </a>
+
+        <a
+          href="viber://chat?number=%2B38349797669"
+          className="
+            w-12 h-12 rounded-full
+            bg-slate-100 border border-slate-200
+            flex items-center justify-center
+            text-slate-600 text-xl
+            hover:bg-purple-600 hover:text-white
+            hover:scale-110
+            transition-all duration-300
+          "
+        >
+          <FaViber />
+        </a>
 
       </div>
 
-      {/* Map */}
-      <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+      {/* MAP */}
+      <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.485700810053!2d21.148112075601908!3d42.65106181666802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ef2fea4df5b%3A0x3910244ac4ad11d1!2s33%20Lek%C3%AB%20Dukagjini%2C%20Prishtin%C3%AB%2010000!5e0!3m2!1sen!2s!4v1780738089696!5m2!1sen!2s"
           className="w-full h-[400px] border-0"

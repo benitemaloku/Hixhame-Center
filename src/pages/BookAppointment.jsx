@@ -54,19 +54,12 @@ export default function BookAppointment() {
 
     let url = "";
 
-    // WhatsApp (FULL SUPPORT)
     if (platform === "whatsapp") {
       url = `https://wa.me/38343569577?text=${encodeURIComponent(message)}`;
-    }
-
-    // Telegram (supports text via start parameter)
-    else if (platform === "telegram") {
+    } else if (platform === "telegram") {
       const telegramMessage = encodeURIComponent(message);
       url = `https://t.me/USERNAME_YT?text=${telegramMessage}`;
-    }
-
-    // Viber (limited support → opens chat only)
-    else if (platform === "viber") {
+    } else if (platform === "viber") {
       const viberMessage = encodeURIComponent(message);
       url = `viber://chat?number=%2B38343569577&text=${viberMessage}`;
     }
@@ -92,6 +85,7 @@ export default function BookAppointment() {
       <section className="bg-slate-50 min-h-screen py-16 px-4">
         <div className="max-w-2xl mx-auto">
 
+          {/* HEADER */}
           <div className="text-center mb-10">
             <h1 className="text-4xl md:text-5xl font-bold text-darkBlue">
               Rezervo Takimin
@@ -101,7 +95,8 @@ export default function BookAppointment() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="form-card space-y-6">
+          {/* FORM */}
+          <form onSubmit={handleSubmit} className="form-card space-y-5">
 
             {/* NAME */}
             <div>
@@ -164,33 +159,45 @@ export default function BookAppointment() {
               </select>
             </div>
 
-            {/* DATE */}
+            {/* DATE (CUSTOM LOOK) */}
             <div>
               <label className="form-label">Data</label>
-              <input
-                type="date"
-                name="date"
-                value={form.date}
-                onChange={handleChange}
-                min={new Date().toISOString().split("T")[0]}
-                placeholder="01/01/2026"
-                className="form-input"
-              />
+              <div className="relative">
+                {!form.date && (
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                    Zgjidh datën
+                  </span>
+                )}
+                <input
+                  type="date"
+                  name="date"
+                  value={form.date}
+                  onChange={handleChange}
+                  min={new Date().toISOString().split("T")[0]}
+                  className="form-input appearance-none"
+                />
+              </div>
             </div>
 
-            {/* TIME */}
+            {/* TIME (CUSTOM LOOK) */}
             <div>
               <label className="form-label">Ora</label>
-              <input
-                type="time"
-                name="time"
-                value={form.time}
-                onChange={handleChange}
-                min="09:00"
-                max="18:00"
-                placeholder="09:00 - 18:00"
-                className="form-input"
-              />
+              <div className="relative">
+                {!form.time && (
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                    Zgjidh orën
+                  </span>
+                )}
+                <input
+                  type="time"
+                  name="time"
+                  value={form.time}
+                  onChange={handleChange}
+                  min="09:00"
+                  max="18:00"
+                  className="form-input appearance-none"
+                />
+              </div>
             </div>
 
             {/* SUBMIT */}

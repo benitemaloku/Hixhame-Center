@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -8,6 +7,8 @@ const services = [
   "Hixhama Terapeutike",
   "Konsultim",
 ];
+
+const platforms = ["whatsapp", "viber", "telegram"];
 
 export default function BookAppointment() {
   const [form, setForm] = useState({
@@ -43,36 +44,31 @@ export default function BookAppointment() {
       return;
     }
 
-    const message = `
-📅 REZERVIM I RI PËR HIXHAME
+    const message = `📅 REZERVIM I RI PËR HIXHAME
 
-👤 Emri dhe Mbiemri: ${name}
+👤 Emri: ${name}
 📞 Telefoni: ${phone}
 🩺 Shërbimi: ${service}
 📆 Data: ${date}
-⏰ Ora: ${time}
-`;
+⏰ Ora: ${time}`;
 
     let url = "";
 
-    switch (platform) {
-      case "whatsapp":
-        url = `https://wa.me/38343569577?text=${encodeURIComponent(
-          message
-        )}`;
-        break;
+    // WhatsApp (FULL SUPPORT)
+    if (platform === "whatsapp") {
+      url = `https://wa.me/38343569577?text=${encodeURIComponent(message)}`;
+    }
 
-      case "viber":
-        url = `viber://chat?number=%2B38343569577`;
-        break;
+    // Telegram (supports text via start parameter)
+    else if (platform === "telegram") {
+      const telegramMessage = encodeURIComponent(message);
+      url = `https://t.me/USERNAME_YT?text=${telegramMessage}`;
+    }
 
-      case "telegram":
-        // Ndrysho username sipas llogarisë tënde
-        url = `https://t.me/USERNAME_YT`;
-        break;
-
-      default:
-        return;
+    // Viber (limited support → opens chat only)
+    else if (platform === "viber") {
+      const viberMessage = encodeURIComponent(message);
+      url = `viber://chat?number=%2B38343569577&text=${viberMessage}`;
     }
 
     window.open(url, "_blank");
@@ -90,137 +86,121 @@ export default function BookAppointment() {
   };
 
   return (
-    <> <Navbar />
+    <>
+      <Navbar />
 
-    <section className="bg-slate-50 min-h-screen py-16 px-4">
-      <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-darkBlue">
-            Rezervo Takimin
-          </h1>
+      <section className="bg-slate-50 min-h-screen py-16 px-4">
+        <div className="max-w-2xl mx-auto">
 
-          <p className="text-slate-500 mt-4 text-lg">
-            Plotëso formularin dhe dërgo rezervimin përmes platformës që
-            preferon.
-          </p>
+          <div className="text-center mb-10">
+            <h1 className="text-4xl md:text-5xl font-bold text-darkBlue">
+              Rezervo Takimin
+            </h1>
+            <p className="text-slate-500 mt-4 text-lg">
+              Plotëso formularin dhe dërgo rezervimin përmes platformës që preferon.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="form-card space-y-6">
+
+            {/* NAME */}
+            <div>
+              <label className="form-label">Emri dhe Mbiemri</label>
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Shkruaj emrin dhe mbiemrin"
+                className="form-input"
+              />
+            </div>
+
+            {/* PHONE */}
+            <div>
+              <label className="form-label">Numri i Telefonit</label>
+              <input
+                type="tel"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="+38344123456"
+                className="form-input"
+              />
+            </div>
+
+            {/* SERVICE */}
+            <div>
+              <label className="form-label">Shërbimi</label>
+              <select
+                name="service"
+                value={form.service}
+                onChange={handleChange}
+                className="form-input"
+              >
+                <option value="">Zgjidh shërbimin</option>
+                {services.map((service) => (
+                  <option key={service} value={service}>
+                    {service}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* PLATFORM */}
+            <div>
+              <label className="form-label">Dërgo përmes</label>
+              <select
+                name="platform"
+                value={form.platform}
+                onChange={handleChange}
+                className="form-input"
+              >
+                {platforms.map((platform) => (
+                  <option key={platform} value={platform}>
+                    {platform.charAt(0).toUpperCase() + platform.slice(1)}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* DATE */}
+            <div>
+              <label className="form-label">Data</label>
+              <input
+                type="date"
+                name="date"
+                value={form.date}
+                onChange={handleChange}
+                min={new Date().toISOString().split("T")[0]}
+                className="form-input"
+              />
+            </div>
+
+            {/* TIME */}
+            <div>
+              <label className="form-label">Ora</label>
+              <input
+                type="time"
+                name="time"
+                value={form.time}
+                onChange={handleChange}
+                min="09:00"
+                max="18:00"
+                className="form-input"
+              />
+            </div>
+
+            {/* SUBMIT */}
+            <button type="submit" className="w-full primary-btn">
+              Dërgo Rezervimin
+            </button>
+
+          </form>
         </div>
+      </section>
 
-        <form
-          onSubmit={handleSubmit}
-          className="form-card space-y-6"
-        >
-          <div>
-            <label className="form-label">
-              Emri dhe Mbiemri
-            </label>
-
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Shkruaj emrin dhe mbiemrin"
-              className="form-input"
-            />
-          </div>
-
-          <div>
-            <label className="form-label">
-              Numri i Telefonit
-            </label>
-
-            <input
-              type="tel"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="+38344123456"
-              className="form-input"
-            />
-          </div>
-
-          <div>
-            <label className="form-label">
-              Shërbimi
-            </label>
-
-            <select
-              name="service"
-              value={form.service}
-              onChange={handleChange}
-              className="form-input"
-            >
-              <option value="">Zgjidh shërbimin</option>
-
-              {services.map((service) => (
-                <option key={service} value={service}>
-                  {service}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="form-label">
-              Dërgo përmes
-            </label>
-
-            <select
-              name="platform"
-              value={form.platform}
-              onChange={handleChange}
-              className="form-input"
-            >
-              <option value="whatsapp">WhatsApp</option>
-              <option value="viber">Viber</option>
-              <option value="telegram">Telegram</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="form-label">
-              Data
-            </label>
-
-            <input
-              type="date"
-              name="date"
-              value={form.date}
-              onChange={handleChange}
-              min={new Date().toISOString().split("T")[0]}
-              className="form-input"
-            
-            />
-          </div>
-
-          <div>
-            <label className="form-label">
-              Ora
-            </label>
-
-            <input
-              type="time"
-              name="time"
-              value={form.time}
-              onChange={handleChange}
-              min="09:00"
-              max="18:00"
-              className="form-input"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full primary-btn"
-          >
-            Dërgo Rezervimin
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <Footer />
-
-  </>
+      <Footer />
+    </>
   );
 }

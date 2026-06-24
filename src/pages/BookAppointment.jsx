@@ -1,60 +1,81 @@
+
 import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const BookAppointment = () => {
+const services = [
+  "Hixhama e Përgjithshme",
+  "Hixhama Terapeutike",
+  "Konsultim",
+];
+
+export default function BookAppointment() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
     service: "",
     date: "",
     time: "",
+    platform: "whatsapp",
   });
 
-  const services = [
-    "Hixhama e Përgjithshme",
-    "Hixhama Terapeutike",
-    "Konsultim",
-  ];
-
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = ({ target }) => {
+    setForm((prev) => ({
+      ...prev,
+      [target.name]: target.value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (
-      !form.name.trim() ||
-      !form.phone.trim() ||
-      !form.service ||
-      !form.date ||
-      !form.time
-    ) {
-      alert("Ju lutem plotësoni të gjitha fushat!");
+    const { name, phone, service, date, time, platform } = form;
+
+    if (!name || !phone || !service || !date || !time) {
+      alert("Ju lutem plotësoni të gjitha fushat.");
+      return;
+    }
+
+    const phoneRegex = /^(\+383|0)[0-9]{8}$/;
+
+    if (!phoneRegex.test(phone.replace(/\s/g, ""))) {
+      alert("Numri i telefonit nuk është valid.");
       return;
     }
 
     const message = `
 📅 REZERVIM I RI PËR HIXHAME
 
-👤 Emri dhe Mbiemri: ${form.name}
-📞 Telefoni: ${form.phone}
-🩺 Shërbimi: ${form.service}
-📆 Data: ${form.date}
-⏰ Ora: ${form.time}
+👤 Emri dhe Mbiemri: ${name}
+📞 Telefoni: ${phone}
+🩺 Shërbimi: ${service}
+📆 Data: ${date}
+⏰ Ora: ${time}
 `;
 
-    const whatsappNumber = "38343569577";
+    let url = "";
 
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      message
-    )}`;
+    switch (platform) {
+      case "whatsapp":
+        url = `https://wa.me/38343569577?text=${encodeURIComponent(
+          message
+        )}`;
+        break;
 
-    window.open(whatsappUrl, "_blank");
+      case "viber":
+        url = `viber://chat?number=%2B38343569577`;
+        break;
+
+      case "telegram":
+        // Ndrysho username sipas llogarisë tënde
+        url = `https://t.me/USERNAME_YT`;
+        break;
+
+      default:
+        return;
+    }
+
+    window.open(url, "_blank");
 
     setForm({
       name: "",
@@ -62,7 +83,10 @@ const BookAppointment = () => {
       service: "",
       date: "",
       time: "",
+      platform: "whatsapp",
     });
+
+    alert("Rezervimi u dërgua me sukses!");
   };
 
   return (
@@ -77,17 +101,17 @@ const BookAppointment = () => {
             </h1>
 
             <p className="text-slate-500 mt-3">
-              Plotëso formularin dhe rezervimi do të dërgohet direkt në
-              WhatsApp.
+              Plotëso formularin dhe dërgo rezervimin përmes platformës që
+              preferon.
             </p>
           </div>
 
           <form
             onSubmit={handleSubmit}
-            className="form-card space-y-6"
+            className="bg-white p-8 rounded-2xl shadow-lg space-y-6"
           >
             <div>
-              <label className="form-label">
+              <label className="block mb-2 font-medium">
                 Emri dhe Mbiemri
               </label>
 
@@ -97,12 +121,12 @@ const BookAppointment = () => {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="Shkruaj emrin dhe mbiemrin"
-                className="form-input"
+                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
               />
             </div>
 
             <div>
-              <label className="form-label">
+              <label className="block mb-2 font-medium">
                 Numri i Telefonit
               </label>
 
@@ -111,13 +135,13 @@ const BookAppointment = () => {
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                placeholder="+383 44 123 456"
-                className="form-input"
+                placeholder="+38344123456"
+                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
               />
             </div>
 
             <div>
-              <label className="form-label">
+              <label className="block mb-2 font-medium">
                 Shërbimi
               </label>
 
@@ -125,12 +149,12 @@ const BookAppointment = () => {
                 name="service"
                 value={form.service}
                 onChange={handleChange}
-                className="form-input"
+                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
               >
                 <option value="">Zgjidh shërbimin</option>
 
-                {services.map((service, index) => (
-                  <option key={index} value={service}>
+                {services.map((service) => (
+                  <option key={service} value={service}>
                     {service}
                   </option>
                 ))}
@@ -138,7 +162,24 @@ const BookAppointment = () => {
             </div>
 
             <div>
-              <label className="form-label">
+              <label className="block mb-2 font-medium">
+                Dërgo përmes
+              </label>
+
+              <select
+                name="platform"
+                value={form.platform}
+                onChange={handleChange}
+                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
+              >
+                <option value="whatsapp">WhatsApp</option>
+                <option value="viber">Viber</option>
+                <option value="telegram">Telegram</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block mb-2 font-medium">
                 Data
               </label>
 
@@ -148,12 +189,12 @@ const BookAppointment = () => {
                 value={form.date}
                 onChange={handleChange}
                 min={new Date().toISOString().split("T")[0]}
-                className="form-input"
+                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
               />
             </div>
 
             <div>
-              <label className="form-label">
+              <label className="block mb-2 font-medium">
                 Ora
               </label>
 
@@ -162,18 +203,17 @@ const BookAppointment = () => {
                 name="time"
                 value={form.time}
                 onChange={handleChange}
-                className="form-input"
+                min="09:00"
+                max="18:00"
+                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
               />
             </div>
 
-            <div>
-              <button
-                type="submit"
-                className="w-full primary-btn text-base"
-              >
-                Dërgo Rezervimin në WhatsApp
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="w-full primary-btn py-3 rounded-lg" >
+              Dërgo Rezervimin
+            </button>
           </form>
         </div>
       </section>
@@ -181,6 +221,4 @@ const BookAppointment = () => {
       <Footer />
     </>
   );
-};
-
-export default BookAppointment;
+}

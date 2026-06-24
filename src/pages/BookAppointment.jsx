@@ -90,135 +90,138 @@ export default function BookAppointment() {
   };
 
   return (
-    <>
-      <Navbar />
+<> <Navbar />
 
-      <section className="bg-slate-50 min-h-screen py-16 px-4">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-10">
-            <h1 className="text-4xl font-bold text-darkBlue">
-              Rezervo Takimin
-            </h1>
+```
+<section className="bg-slate-50 min-h-screen py-16 px-4">
+  <div className="max-w-2xl mx-auto">
+    <div className="text-center mb-10">
+      <h1 className="text-4xl md:text-5xl font-bold text-darkBlue">
+        Rezervo Takimin
+      </h1>
 
-            <p className="text-slate-500 mt-3">
-              Plotëso formularin dhe dërgo rezervimin përmes platformës që
-              preferon.
-            </p>
-          </div>
+      <p className="text-slate-500 mt-4 text-lg">
+        Plotëso formularin dhe dërgo rezervimin përmes platformës që
+        preferon.
+      </p>
+    </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white p-8 rounded-2xl shadow-lg space-y-6"
-          >
-            <div>
-              <label className="block mb-2 font-medium">
-                Emri dhe Mbiemri
-              </label>
+    <form
+      onSubmit={handleSubmit}
+      className="form-card space-y-6"
+    >
+      <div>
+        <label className="form-label">
+          Emri dhe Mbiemri
+        </label>
 
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Shkruaj emrin dhe mbiemrin"
-                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
-              />
-            </div>
+        <input
+          type="text"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="Shkruaj emrin dhe mbiemrin"
+          className="form-input"
+        />
+      </div>
 
-            <div>
-              <label className="block mb-2 font-medium">
-                Numri i Telefonit
-              </label>
+      <div>
+        <label className="form-label">
+          Numri i Telefonit
+        </label>
 
-              <input
-                type="tel"
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                placeholder="+38344123456"
-                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
-              />
-            </div>
+        <input
+          type="tel"
+          name="phone"
+          value={form.phone}
+          onChange={handleChange}
+          placeholder="+38344123456"
+          className="form-input"
+        />
+      </div>
 
-            <div>
-              <label className="block mb-2 font-medium">
-                Shërbimi
-              </label>
+      <div>
+        <label className="form-label">
+          Shërbimi
+        </label>
 
-              <select
-                name="service"
-                value={form.service}
-                onChange={handleChange}
-                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
-              >
-                <option value="">Zgjidh shërbimin</option>
+        <select
+          name="service"
+          value={form.service}
+          onChange={handleChange}
+          className="form-input"
+        >
+          <option value="">Zgjidh shërbimin</option>
 
-                {services.map((service) => (
-                  <option key={service} value={service}>
-                    {service}
-                  </option>
-                ))}
-              </select>
-            </div>
+          {services.map((service) => (
+            <option key={service} value={service}>
+              {service}
+            </option>
+          ))}
+        </select>
+      </div>
 
-            <div>
-              <label className="block mb-2 font-medium">
-                Dërgo përmes
-              </label>
+      <div>
+        <label className="form-label">
+          Dërgo përmes
+        </label>
 
-              <select
-                name="platform"
-                value={form.platform}
-                onChange={handleChange}
-                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
-              >
-                <option value="whatsapp">WhatsApp</option>
-                <option value="viber">Viber</option>
-                <option value="telegram">Telegram</option>
-              </select>
-            </div>
+        <select
+          name="platform"
+          value={form.platform}
+          onChange={handleChange}
+          className="form-input"
+        >
+          <option value="whatsapp">WhatsApp</option>
+          <option value="viber">Viber</option>
+          <option value="telegram">Telegram</option>
+        </select>
+      </div>
 
-            <div>
-              <label className="block mb-2 font-medium">
-                Data
-              </label>
+      <div>
+        <label className="form-label">
+          Data
+        </label>
 
-              <input
-                type="date"
-                name="date"
-                value={form.date}
-                onChange={handleChange}
-                min={new Date().toISOString().split("T")[0]}
-                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
-              />
-            </div>
+        <input
+          type="date"
+          name="date"
+          value={form.date}
+          onChange={handleChange}
+          min={new Date().toISOString().split("T")[0]}
+          className="form-input"
+        />
+      </div>
 
-            <div>
-              <label className="block mb-2 font-medium">
-                Ora
-              </label>
+      <div>
+        <label className="form-label">
+          Ora
+        </label>
 
-              <input
-                type="time"
-                name="time"
-                value={form.time}
-                onChange={handleChange}
-                min="09:00"
-                max="18:00"
-                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-green-500"
-              />
-            </div>
+        <input
+          type="time"
+          name="time"
+          value={form.time}
+          onChange={handleChange}
+          min="09:00"
+          max="18:00"
+          className="form-input"
+        />
+      </div>
 
-            <button
-              type="submit"
-              className="w-full primary-btn py-3 rounded-lg" >
-              Dërgo Rezervimin
-            </button>
-          </form>
-        </div>
-      </section>
+      <button
+        type="submit"
+        className="w-full primary-btn"
+      >
+        Dërgo Rezervimin
+      </button>
+    </form>
+  </div>
+</section>
 
-      <Footer />
-    </>
-  );
+<Footer />
+
+</>
+);
+
 }

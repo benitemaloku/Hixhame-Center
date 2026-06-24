@@ -35,7 +35,7 @@ const Contact = () => {
           </h3>
 
           <p className="text-slate-600">
-            +383 44 123 456
+            +383 49 797 669
           </p>
         </div>
 
@@ -61,7 +61,7 @@ const Contact = () => {
           </h3>
 
           <p className="text-slate-600">
-            Rr. Xhavit Hoxha
+            Rr. Xhavit Hoxha, Dardani 
             <br />
             Prishtinë, Kosovë
           </p>

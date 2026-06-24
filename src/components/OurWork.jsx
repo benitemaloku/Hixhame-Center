@@ -43,7 +43,7 @@ const OurWork = () => {
   return (
     <section
       id="ourwork"
-      className="bg-slate-50 py-24 scroll-mt-8"
+      className="bg-slate-100 py-24 scroll-mt-8"
     >
       <div className="max-w-7xl mx-auto px-4">
 

@@ -21,8 +21,7 @@ const Hero = () => {
         </h1>
 
         <p className="mt-6 text-base text-slate-600 leading-8">
-          Terapi profesionale e hixhames në një ambient modern,
-          të sigurt dhe relaksues.
+         Ordinancë private me një dekadë përvojë, që ofron hixhame nga terapistja e çertifikuar Servete Hajdari.
         </p>
 
           <div className="flex justify-center md:justify-start mt-6">

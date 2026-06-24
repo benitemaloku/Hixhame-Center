@@ -173,6 +173,7 @@ export default function BookAppointment() {
                 value={form.date}
                 onChange={handleChange}
                 min={new Date().toISOString().split("T")[0]}
+                placeholder="01/01/2026"
                 className="form-input"
               />
             </div>
@@ -187,6 +188,7 @@ export default function BookAppointment() {
                 onChange={handleChange}
                 min="09:00"
                 max="18:00"
+                placeholder="09:00 - 18:00"
                 className="form-input"
               />
             </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { RiMenu4Line, RiCloseFill } from "react-icons/ri";
+import { RiMenuLine, RiCloseFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { MobileNavbar } from "./MobileNavbar";
@@ -28,7 +28,7 @@ export const Navbar = () => {
     <>
       {isMenuOpen && <MobileNavbar setIsMenuOpen={setIsMenuOpen} />}
 
-      <header className="bg-slate-100 sticky top-0 z-50 border-b border-slate-200">
+      <header className="bg-slate-100 sticky top-0 z-50 border-b border-slate-200/30">
         <nav className="max-w-20xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
 
@@ -45,7 +45,7 @@ export const Navbar = () => {
               />
 
               <div className="flex flex-col leading-tight ml-24">
-                <span className="text-base md:text-lg font-bold tracking-wide text-gradient">
+                <span className="text-base md:text-lg font-semibold tracking-wide text-primary">
                   HIXHAME CENTER
                 </span>
 
@@ -137,9 +137,9 @@ export const Navbar = () => {
 
               <button
                 onClick={toggleMenu}
-                className="lg:hidden w-11 h-11 bg-blue-200 text-primary text-2xl rounded-lg flex items-center justify-center"
+                className="lg:hidden w-11 h-11 text-primary  text-3xl rounded-lg flex items-center justify-center"
               >
-                {isMenuOpen ? <RiCloseFill /> : <RiMenu4Line />}
+                {isMenuOpen ? <RiCloseFill /> : <RiMenuLine />}
               </button>
 
             </div>

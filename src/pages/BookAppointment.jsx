@@ -53,7 +53,7 @@ export default function BookAppointment() {
       
         try {
           window.open(
-            `https://wa.me/38343569577?text=${encodeURIComponent(message)}`,
+            `https://wa.me/38349797669?text=${encodeURIComponent(message)}`,
             "_blank"
           );
       

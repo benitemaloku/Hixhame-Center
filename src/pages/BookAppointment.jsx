@@ -58,7 +58,7 @@ export default function BookAppointment() {
       url = `https://wa.me/38343569577?text=${encodeURIComponent(message)}`;
     } else if (platform === "telegram") {
       const telegramMessage = encodeURIComponent(message);
-      url = `https://t.me/USERNAME_YT?text=${telegramMessage}`;
+      url = `https://t.me/bmaloku?text=${telegramMessage}`;
     } 
     window.open(url, "_blank");
 

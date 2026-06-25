@@ -44,12 +44,12 @@ export default function BookAppointment() {
         const message = `
       REZERVIM I RI PËR HIXHAME
       
-  Emri: ${name}
-  Telefoni: ${phone}
-  Shërbimi: ${service}
-  Data: ${date}
-  Ora: ${time}
-      `;
+      Emri: ${name}
+      Telefoni: ${phone}
+      Shërbimi: ${service}
+      Data: ${date}
+      Ora: ${time}
+          `;
       
         try {
           window.open(

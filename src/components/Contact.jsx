@@ -131,7 +131,7 @@ const Contact = () => {
 
 {/* SOCIAL SECTION */}
 <div className="text-center mt-10 mb-6">
-  <h3 className="text-lg font-semibold text-darkBlue">
+  <h3 className="text-lg font-medium text-darkBlue">
     Na ndiqni dhe kontaktoni
   </h3>
 

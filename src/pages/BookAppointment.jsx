@@ -8,8 +8,6 @@ const services = [
   "Konsultim",
 ];
 
-const platforms = ["whatsapp", "telegram"];
-
 export default function BookAppointment() {
   const [form, setForm] = useState({
     name: "",
@@ -17,7 +15,6 @@ export default function BookAppointment() {
     service: "",
     date: "",
     time: "",
-    platform: "whatsapp",
   });
 
   const handleChange = ({ target }) => {
@@ -27,57 +24,52 @@ export default function BookAppointment() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const { name, phone, service, date, time, platform } = form;
-
-    if (!name || !phone || !service || !date || !time) {
-      alert("Ju lutem plotësoni të gjitha fushat.");
-      return;
-    }
-
-    const phoneRegex = /^(\+383|0)[0-9]{8}$/;
-
-    if (!phoneRegex.test(phone.replace(/\s/g, ""))) {
-      alert("Numri i telefonit nuk është valid.");
-      return;
-    }
-
-      const message = `REZERVIM I RI PER HIXHAME
-
-  Emri: ${name}
-  Telefoni: ${phone}
-  Sherbimi: ${service}
-  Data: ${date}
-  Ora: ${time}`;
-
-    let url = "";
-
-    if (platform === "whatsapp") {
-      window.open(
-        `https://wa.me/38343569577?text=${encodeURIComponent(message)}`,
-        "_blank"
-      );
-    } else if (platform === "telegram") {
-      window.location.href = "tg://resolve?domain=bmaloku";
-      setTimeout(() => {
-        window.open("https://t.me/bmaloku", "_blank");
-      }, 1000);
-    }
-
-    setForm({
-      name: "",
-      phone: "",
-      service: "",
-      date: "",
-      time: "",
-      platform: "whatsapp",
-    });
-
-    alert("Rezervimi u dërgua me sukses!");
-  };
-
+      const handleSubmit = (e) => {
+        e.preventDefault();
+      
+        const { name, phone, service, date, time } = form;
+      
+        if (!name || !phone || !service || !date || !time) {
+          alert("Ju lutem plotësoni të gjitha fushat.");
+          return;
+        }
+      
+        const phoneRegex = /^(\+383|0)[0-9]{8}$/;
+      
+        if (!phoneRegex.test(phone.replace(/\s/g, ""))) {
+          alert("Numri i telefonit nuk është valid.");
+          return;
+        }
+      
+        const message = `
+      REZERVIM I RI PËR HIXHAME
+      
+      Emri: ${name}
+      Telefoni: ${phone}
+      Shërbimi: ${service}
+      Data: ${date}
+      Ora: ${time}
+      `;
+      
+        try {
+          window.open(
+            `https://wa.me/38343569577?text=${encodeURIComponent(message)}`,
+            "_blank"
+          );
+      
+          setForm({
+            name: "",
+            phone: "",
+            service: "",
+            date: "",
+            time: "",
+          });
+      
+          alert("Rezervimi u dërgua me sukses!");
+        } catch (err) {
+          alert("Diçka shkoi gabim.");
+        }
+      };
   return (
     <>
       <Navbar />
@@ -137,23 +129,6 @@ export default function BookAppointment() {
                 {services.map((service) => (
                   <option key={service} value={service}>
                     {service}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* PLATFORM */}
-            <div>
-              <label className="form-label">Dërgo përmes</label>
-              <select
-                name="platform"
-                value={form.platform}
-                onChange={handleChange}
-                className="form-input"
-              >
-                {platforms.map((platform) => (
-                  <option key={platform} value={platform}>
-                    {platform.charAt(0).toUpperCase() + platform.slice(1)}
                   </option>
                 ))}
               </select>

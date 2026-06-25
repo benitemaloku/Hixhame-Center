@@ -46,21 +46,25 @@ export default function BookAppointment() {
 
       const message = `REZERVIM I RI PER HIXHAME
 
-      Emri: ${name}
-      Telefoni: ${phone}
-      Sherbimi: ${service}
-      Data: ${date}
-      Ora: ${time}`;
+  Emri: ${name}
+  Telefoni: ${phone}
+  Sherbimi: ${service}
+  Data: ${date}
+  Ora: ${time}`;
 
     let url = "";
 
     if (platform === "whatsapp") {
-      url = `https://wa.me/38343569577?text=${encodeURIComponent(message)}`;
+      window.open(
+        `https://wa.me/38343569577?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
     } else if (platform === "telegram") {
-      const telegramMessage = encodeURIComponent(message);
-      url = `https://t.me/bmaloku?text=${telegramMessage}`;
-    } 
-    window.open(url, "_blank");
+      window.location.href = "tg://resolve?domain=bmaloku";
+      setTimeout(() => {
+        window.open("https://t.me/bmaloku", "_blank");
+      }, 1000);
+    }
 
     setForm({
       name: "",

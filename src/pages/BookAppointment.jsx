@@ -177,7 +177,7 @@ export default function BookAppointment() {
 
             {/* SUBMIT */}
             <button type="submit" className="w-full primary-btn">
-              Dërgo Rezervimin ne WhatsApp
+              Dërgo Rezervimin në WhatsApp
             </button>
 
           </form>

@@ -8,7 +8,7 @@ const services = [
   "Konsultim",
 ];
 
-const platforms = ["whatsapp", "viber", "telegram"];
+const platforms = ["whatsapp", "telegram"];
 
 export default function BookAppointment() {
   const [form, setForm] = useState({
@@ -44,13 +44,13 @@ export default function BookAppointment() {
       return;
     }
 
-    const message = `📅 REZERVIM I RI PËR HIXHAME
+      const message = `REZERVIM I RI PER HIXHAME
 
-👤 Emri: ${name}
-📞 Telefoni: ${phone}
-🩺 Shërbimi: ${service}
-📆 Data: ${date}
-⏰ Ora: ${time}`;
+      Emri: ${name}
+      Telefoni: ${phone}
+      Sherbimi: ${service}
+      Data: ${date}
+      Ora: ${time}`;
 
     let url = "";
 
@@ -59,11 +59,7 @@ export default function BookAppointment() {
     } else if (platform === "telegram") {
       const telegramMessage = encodeURIComponent(message);
       url = `https://t.me/USERNAME_YT?text=${telegramMessage}`;
-    } else if (platform === "viber") {
-      const viberMessage = encodeURIComponent(message);
-      url = `viber://chat?number=%2B38343569577&text=${viberMessage}`;
-    }
-
+    } 
     window.open(url, "_blank");
 
     setForm({

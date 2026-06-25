@@ -44,11 +44,11 @@ export default function BookAppointment() {
         const message = `
       REZERVIM I RI PËR HIXHAME
       
-      Emri: ${name}
-      Telefoni: ${phone}
-      Shërbimi: ${service}
-      Data: ${date}
-      Ora: ${time}
+  Emri: ${name}
+  Telefoni: ${phone}
+  Shërbimi: ${service}
+  Data: ${date}
+  Ora: ${time}
       `;
       
         try {
@@ -177,7 +177,7 @@ export default function BookAppointment() {
 
             {/* SUBMIT */}
             <button type="submit" className="w-full primary-btn">
-              Dërgo Rezervimin
+              Dërgo Rezervimin ne WhatsApp
             </button>
 
           </form>
